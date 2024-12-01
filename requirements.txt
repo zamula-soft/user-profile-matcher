@@ -1,0 +1,7 @@
+# service
+flask
+sqlalchemy
+psycopg2-binary
+
+# test
+pytest
