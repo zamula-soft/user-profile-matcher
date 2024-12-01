@@ -1,4 +1,4 @@
-version: "3"
+#version: "3"
 services:
 
   user-profile-matcher:
@@ -19,9 +19,9 @@ services:
       - "5005:80"
 
   postgres:
-    image: postgres:9.6
+    image: postgres:14.6-alpine
     environment:
-      - POSTGRES_USER=gamelot
-      - POSTGRES_PASSWORD=a1b2c3
+      - POSTGRES_USER=user_db
+      - POSTGRES_PASSWORD=abc123
     ports:
       - "54321:5432"

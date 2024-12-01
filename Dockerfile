@@ -18,5 +18,5 @@ RUN pip install -e /src
 
 # run service settings
 WORKDIR /src
-ENV FLASK_APP=user-profile-matcher/entrypoints/flask_app.py FLASK_DEBUG=1 PYTHONUNBUFFERED=1
+ENV FLASK_APP=user_profile_matcher/entrypoints/flask_app.py FLASK_DEBUG=1 PYTHONUNBUFFERED=1
 CMD flask run --host=0.0.0.0 --port=80

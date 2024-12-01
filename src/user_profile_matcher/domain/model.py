@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 @dataclass
-class UserProfile:
+class PlayerProfile:
     player_id: int
 
 @dataclass
