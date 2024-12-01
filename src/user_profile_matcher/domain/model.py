@@ -52,7 +52,7 @@ class Matcher:
     does_not_have: bool # items
 
 @dataclass
-class CampaignData:
+class Campaign:
     game: str
     name: str
     priority: float
