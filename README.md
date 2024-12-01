@@ -1,6 +1,6 @@
 # User profile matcher
 
-## Взаимодействие
+## Service description
 - Implement HTTP API.
 - Update DB entries
 
