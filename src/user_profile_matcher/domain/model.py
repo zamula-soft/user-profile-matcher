@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 @dataclass
-class Devices:
+class Device:
     id: int
     model: str
     carrier: str
@@ -11,6 +11,7 @@ class Devices:
 
 @dataclass
 class Inventory:
+    player_id: int
     cash: int
     coins: int
     item_1: int
@@ -34,7 +35,7 @@ class PlayerProfile:
     total_transactions: int
     last_purchase: datetime
     active_campaigns: list[str]
-    devices: list[Devices]
+    devices: list[Device]
     level: int
     xp: int
     total_playtime: int
