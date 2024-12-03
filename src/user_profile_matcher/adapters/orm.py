@@ -34,7 +34,7 @@ player_profiles = Table(
     Column("country", String(2)),
     Column("language", String(2)),
     Column("birthdate", DateTime),
-    Column("gender", Enum("female", "male", "nonbinary", name="gender_enum", create_type=False)),
+    Column("gender", Enum("male", "female", "nonbinary", name="gender_enum", create_type=False)),
     Column("_custom_field", String(255))
 )
 

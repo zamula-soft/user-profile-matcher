@@ -25,9 +25,9 @@ class Clan:
     name: str
 
 class Gender(enum.Enum):
-    MALE = enum.auto()
-    FEMALE = enum.auto()
-    NONBINARY = enum.auto()
+    MALE = "male"
+    FEMALE = "female"
+    NONBINARY = "nonbinary"
 
 @dataclass
 class PlayerProfile:
