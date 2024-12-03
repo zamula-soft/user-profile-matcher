@@ -1,3 +1,4 @@
+import enum
 from dataclasses import dataclass
 from datetime import datetime
 
@@ -11,7 +12,7 @@ class Device:
 
 @dataclass
 class Inventory:
-    player_id: int
+    id: int
     cash: int
     coins: int
     item_1: int
@@ -22,6 +23,11 @@ class Inventory:
 class Clan:
     id: int
     name: str
+
+class Gender(enum.Enum):
+    MALE = enum.auto()
+    FEMALE = enum.auto()
+    NONBINARY = enum.auto()
 
 @dataclass
 class PlayerProfile:
@@ -42,18 +48,19 @@ class PlayerProfile:
     country: str
     language: str
     birthdate: datetime
-    gender: str
+    gender: Gender
     clan: Clan
     _custom_field: str
 
 @dataclass
 class Matcher:
-    level: bool # min 1 max 3
-    has: bool # country items
-    does_not_have: bool # items
+    level: dict # min 1 max 3
+    has: dict # country items
+    does_not_have: dict # items
 
 @dataclass
 class Campaign:
+    campaign_id: int
     game: str
     name: str
     priority: float
