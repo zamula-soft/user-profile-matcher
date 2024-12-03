@@ -10,7 +10,7 @@ def get_client_config(player_id):
     player_profile = views.get_player_profile(player_id=player_id)
 
     external_service = ExternalServiceListCampaigns()
-    current_campaign = external_service.get_list_campaigns()
+    current_campaign = external_service.get_list_campaigns_data()
 
     if check_matchers(player_profile, current_campaign):
         update_player_profile(player_profile)

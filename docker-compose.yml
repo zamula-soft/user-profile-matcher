@@ -9,8 +9,8 @@ services:
       - postgres
     environment:
       - DB_HOST=postgres
-      - DB_PASSWORD=a1b2c3
-      - API_HOST=app
+      - DB_PASSWORD=postgres
+      - API_HOST=user-profile-matcher
       - PYTHONDONTWRITEBYTECODE=1
     volumes:
       - ./src:/src
@@ -19,9 +19,15 @@ services:
       - "5005:80"
 
   postgres:
-    image: postgres:14.6-alpine
+    image: postgres:17.2-alpine
+    restart: unless-stopped
     environment:
-      - POSTGRES_USER=user_db
-      - POSTGRES_PASSWORD=abc123
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=postgres
     ports:
-      - "54321:5432"
+        - 5432:5432
+    volumes:
+        - postgres_data:/var/lib/postgresql/data
+volumes:
+    postgres_data:

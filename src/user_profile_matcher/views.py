@@ -1,4 +1,3 @@
-
 def get_player_profile(player_id):
     """"""
     return {
@@ -40,3 +39,4 @@ def get_player_profile(player_id):
         },
         "_customfield": "mycustom"
     }
+
