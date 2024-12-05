@@ -4,7 +4,8 @@ import json
 class ExternalServiceListCampaigns:
     """Mocked external service to get list of current campaigns"""
 
-    def get_list_campaigns(self):
+    @staticmethod
+    def get_list_campaigns():
         """Get list campaigns data from external API service"""
         api_url = '/get_list_campaigns/'
         response = requests.get(api_url)
@@ -14,8 +15,6 @@ class ExternalServiceListCampaigns:
     @staticmethod
     def get_list_campaigns_data():
         mock_data = [
-    def get_list_campaigns():
-        return [
             {
                 "game": "mygame",
                 "name":"mycampaign",
@@ -31,6 +30,28 @@ class ExternalServiceListCampaigns:
                     },
                     "does_not_have": {
                         "items": ["item_4"]
+                    },
+                },
+                "start_date": "2022-01-25 00:00:00Z",
+                "end_date": "2022-02-25 00:00:00Z",
+                "enabled": True,
+                "last_updated": "2021-07-13 11:46:58Z"
+            },
+            {
+                "game": "mygame",
+                "name": "mycampaign1",
+                "priority": 10.5,
+                "matchers": {
+                    "level": {
+                        "min": 1,
+                        "max": 3
+                    },
+                    "has": {
+                        "country": ["US", "RO", "CA"],
+                        "items": ["item_1"]
+                    },
+                    "does_not_have": {
+                        "items": ["item_34"]
                     },
                 },
                 "start_date": "2022-01-25 00:00:00Z",

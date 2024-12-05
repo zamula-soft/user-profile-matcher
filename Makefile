@@ -7,6 +7,11 @@ up:
 down:
 	docker compose down --remove-orphans
 
+restart:
+	docker compose down --remove-orphans
+	docker compose build
+	docker compose up -d
+
 #
 
 black:

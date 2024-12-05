@@ -1,4 +1,5 @@
 import enum
+import uuid
 from dataclasses import dataclass
 from datetime import datetime
 
@@ -31,7 +32,7 @@ class Gender(enum.Enum):
 
 @dataclass
 class PlayerProfile:
-    player_id: int
+    player_id: uuid.UUID
     credential: str
     created: datetime
     modified: datetime
@@ -50,7 +51,7 @@ class PlayerProfile:
     birthdate: datetime
     gender: Gender
     clan: Clan
-    _custom_field: str
+    _customfield: str
 
 @dataclass
 class Matcher:
@@ -60,12 +61,11 @@ class Matcher:
 
 @dataclass
 class Campaign:
-    campaign_id: int
     game: str
     name: str
     priority: float
-    matchers: Matcher
+    matchers: dict
     start_date: datetime
     end_date: datetime
     enabled: bool
-    last_update: datetime
+    last_updated: datetime

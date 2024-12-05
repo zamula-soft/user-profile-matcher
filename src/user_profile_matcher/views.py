@@ -1,6 +1,21 @@
-def get_player_profile(player_id):
+import uuid
+
+from src.user_profile_matcher.domain.model import PlayerProfile
+
+
+def get_player_profile(player_profile_data) -> PlayerProfile:
+    """Get data from player profile for PlayerProfileInstance"""
+    _fields_dict = {}
+
+    for field in PlayerProfile.__annotations__:
+        if field in player_profile_data.keys():
+            _fields_dict[field] = player_profile_data[field]
+
+    return PlayerProfile(**_fields_dict)
+
+def get_player_profile_data(player_id: uuid.UUID):
     """"""
-    return {
+    player_profile_data = {
         "player_id": "97983be2-98b7-11e7-90cf-082e5f28d836",
         "credential": "apple_credential",
         "created": "2021-01-10 13:37:17Z",
@@ -39,4 +54,6 @@ def get_player_profile(player_id):
         },
         "_customfield": "mycustom"
     }
+
+    return player_profile_data
 
