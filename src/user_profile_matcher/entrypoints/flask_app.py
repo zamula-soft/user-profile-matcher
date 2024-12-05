@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 from flask import Flask, jsonify, request
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -14,8 +16,8 @@ def get_client_config_endpoint(player_id):
     try:
         player_profile = services.get_client_config(player_id=player_id)
     except Exception as e:
-        return {"message": str(e)}, 400
+        return {"message": str(e)}, HTTPStatus.INTERNAL_SERVER_ERROR
 
     if not player_profile:
-        return "not found", 404
-    return jsonify(player_profile), 200
+        return "not found", HTTPStatus.NOT_FOUND
+    return jsonify(player_profile), HTTPStatus.OK
