@@ -1,14 +1,15 @@
 from http import HTTPStatus
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from src.user_profile_matcher import config, bootstrap
 from src.user_profile_matcher.service_layer import services
 
-# bus = bootstrap.bootstrap()
-get_session = sessionmaker(bind=create_engine(config.get_postgres_uri()))
+
+bus = bootstrap.bootstrap()
+# get_session = sessionmaker(bind=config.get_postgres_uri())
 app = Flask(__name__)
 
 @app.route("/get_client_config/<player_id>", methods=["GET"])

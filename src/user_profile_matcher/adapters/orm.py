@@ -1,17 +1,21 @@
 from datetime import datetime
 
-from sqlalchemy import Table, MetaData, Column, Integer, String, UUID, DateTime, ForeignKey, Enum, ARRAY, Float, \
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import Table, MetaData, Column, Integer, String, UUID, DateTime, ForeignKey, Enum, Float, \
     Boolean, JSON
 from sqlalchemy.orm import mapper
 
-from src.user_profile_matcher.domain import model
+from sqlalchemy import create_engine
+from sqlalchemy_utils import database_exists, create_database
+from src.user_profile_matcher import config
+
 
 metadata = MetaData()
 
 clans = Table(
     "clans",
     metadata,
-    Column("id", primary_key=True, autoincrement=True),
+    Column("id", String(255), primary_key=True, autoincrement=True),
     Column("name", String(255), nullable=False)
 )
 
@@ -19,7 +23,7 @@ player_profiles = Table(
     "player_profiles",
     metadata,
     Column("player_id", UUID, primary_key=True, autoincrement=True),
-    Column("clan", Integer, ForeignKey("clans.id")),
+    Column("clan", String(255), ForeignKey("clans.id")),
     Column("credential", String(255)),
     Column("created", DateTime, default=datetime.now),
     Column("modified", DateTime, default=datetime.now, onupdate=datetime.now),
@@ -85,17 +89,4 @@ player_profiles_campaigns = Table(
     Column("player_id", ForeignKey("player_profiles.player_id")),
     Column("campaign_id", ForeignKey("campaigns.id"))
 )
-
-def create_mappers():
-    devices_mapper = mapper(model.Device, devices)
-    inventories_mapper = mapper(model.Inventory, inventories)
-    clans_mapper = mapper(model.Clan, clans)
-    player_profiles_mapper(
-        model.PlayerProfile,
-        player_profiles,
-        {
-
-        }
-    )
-
 

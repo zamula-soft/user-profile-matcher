@@ -4,14 +4,14 @@ from dataclasses import dataclass
 from datetime import datetime
 
 
-@dataclass
+@dataclass(frozen=True)
 class Device:
     id: int
     model: str
     carrier: str
     firmware: str
 
-@dataclass
+@dataclass(frozen=True)
 class Inventory:
     id: int
     cash: int
@@ -20,9 +20,9 @@ class Inventory:
     item_34: int
     item_55: int
 
-@dataclass
+@dataclass(frozen=True)
 class Clan:
-    id: int
+    id: str
     name: str
 
 class Gender(enum.Enum):
@@ -30,7 +30,7 @@ class Gender(enum.Enum):
     FEMALE = "female"
     NONBINARY = "nonbinary"
 
-@dataclass
+@dataclass(frozen=True)
 class PlayerProfile:
     player_id: uuid.UUID
     credential: str
@@ -53,13 +53,13 @@ class PlayerProfile:
     clan: Clan
     _customfield: str
 
-@dataclass
+@dataclass(frozen=True)
 class Matcher:
     level: dict # min 1 max 3
     has: dict # country items
     does_not_have: dict # items
 
-@dataclass
+@dataclass(frozen=True)
 class Campaign:
     game: str
     name: str

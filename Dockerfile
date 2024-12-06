@@ -2,7 +2,6 @@ FROM python:3.11-alpine
 
 # system dependencies
 RUN apk add --no-cache --virtual .build-deps
-# RUN gcc postgresqldev musl-dev python3-dev
 RUN apk add libpq
 
 # python dependencies
@@ -14,7 +13,6 @@ RUN apk del --no-cache .build-deps
 RUN mkdir -p /src
 COPY src/ /src/
 RUN pip install -e /src
-# COPY tests/ /tests/
 
 # run service settings
 WORKDIR /src

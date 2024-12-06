@@ -6,7 +6,7 @@ from src.user_profile_matcher import views
 from src.user_profile_matcher.domain.model import Campaign, Matcher, PlayerProfile
 
 
-LOGGING_LEVEL = logging.WARN
+LOGGING_LEVEL = logging.DEBUG
 logging.basicConfig(stream=sys.stdout, level=LOGGING_LEVEL)
 
 logger = logging.getLogger("SERVICES")
