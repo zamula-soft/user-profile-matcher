@@ -3,15 +3,15 @@ import uuid
 from dataclasses import dataclass
 from datetime import datetime
 
-
-@dataclass(frozen=True)
+@dataclass
 class Device:
     id: int
     model: str
     carrier: str
     firmware: str
 
-@dataclass(frozen=True)
+
+@dataclass
 class Inventory:
     id: int
     cash: int
@@ -20,17 +20,20 @@ class Inventory:
     item_34: int
     item_55: int
 
-@dataclass(frozen=True)
+
+@dataclass
 class Clan:
     id: str
     name: str
+
+
 
 class Gender(enum.Enum):
     MALE = "male"
     FEMALE = "female"
     NONBINARY = "nonbinary"
 
-@dataclass(frozen=True)
+@dataclass
 class PlayerProfile:
     player_id: uuid.UUID
     credential: str
@@ -53,13 +56,29 @@ class PlayerProfile:
     clan: Clan
     _customfield: str
 
-@dataclass(frozen=True)
+    def update_player_profile(self, campaign_name):
+        """Add campaign to active campaigns in player profile"""
+        self.active_campaigns.append(campaign_name)
+
+    @staticmethod
+    def get_player_profile_from_data(player_profile_data):
+        """Get data from player profile for PlayerProfileInstance"""
+        _fields_dict = {}
+
+        for field in PlayerProfile.__annotations__:
+            if field in player_profile_data.keys():
+                _fields_dict[field] = player_profile_data[field]
+        return PlayerProfile(**_fields_dict)
+
+
+@dataclass
 class Matcher:
     level: dict # min 1 max 3
     has: dict # country items
     does_not_have: dict # items
 
-@dataclass(frozen=True)
+
+@dataclass
 class Campaign:
     game: str
     name: str

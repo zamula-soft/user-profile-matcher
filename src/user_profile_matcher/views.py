@@ -1,17 +1,7 @@
 import uuid
 
-from src.user_profile_matcher.domain.model import PlayerProfile
-
-
-def get_player_profile(player_profile_data) -> PlayerProfile:
-    """Get data from player profile for PlayerProfileInstance"""
-    _fields_dict = {}
-
-    for field in PlayerProfile.__annotations__:
-        if field in player_profile_data.keys():
-            _fields_dict[field] = player_profile_data[field]
-
-    return PlayerProfile(**_fields_dict)
+def get_player_profile_data_from_orm(player_id: uuid.UUID):
+    pass
 
 def get_player_profile_data(player_id: uuid.UUID):
     """"""

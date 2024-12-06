@@ -1,4 +1,7 @@
+import logging
 import os
+import sys
+
 
 def get_postgres_uri():
     host = os.environ.get('DB_HOST', 'localhost')
@@ -12,3 +15,9 @@ def get_api_url():
     host = os.environ.get('API_HOST', 'localhost')
     port = 5005 if host == 'localhost' else 80
     return f"http://{host}:{port}"
+
+def get_logger(name):
+    LOGGING_LEVEL = logging.DEBUG
+    logging.basicConfig(stream=sys.stdout, level=LOGGING_LEVEL)
+
+    return logging.getLogger(name)
