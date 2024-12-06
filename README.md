@@ -56,8 +56,8 @@ Player profile to be used:
 ```
 
 ## Campaign data
-```json
 Current campaign data:
+```json
 {
   "game": "mygame",
   "name":"mycampaign",
@@ -73,10 +73,11 @@ Current campaign data:
     },
     "does_not_have": {
       "items": ["item_4"]
-    },
+    }
   },
   "start_date": "2022-01-25 00:00:00Z",
   "end_date": "2022-02-25 00:00:00Z",
   "enabled": true,
   "last_updated": "2021-07-13 11:46:58Z"
-}```
+}
+```

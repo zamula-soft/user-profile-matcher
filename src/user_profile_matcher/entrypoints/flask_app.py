@@ -4,6 +4,7 @@ from src.user_profile_matcher.service_layer import services, unit_of_work
 
 app = Flask(__name__)
 
+
 @app.route("/get_client_config/<player_id>", methods=["GET"])
 def get_client_config_endpoint(player_id):
     try:
