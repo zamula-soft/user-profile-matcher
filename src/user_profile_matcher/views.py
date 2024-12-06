@@ -1,7 +1,9 @@
 import uuid
 
+
 def get_player_profile_data_from_orm(player_id: uuid.UUID):
     pass
+
 
 def get_player_profile_data(player_id: uuid.UUID):
     """"""
@@ -21,7 +23,7 @@ def get_player_profile_data(player_id: uuid.UUID):
                 "id": 1,
                 "model": "apple iphone 11",
                 "carrier": "vodafone",
-                "firmware": "123"
+                "firmware": "123",
             }
         ],
         "level": 3,
@@ -36,14 +38,10 @@ def get_player_profile_data(player_id: uuid.UUID):
             "coins": 123,
             "item_1": 1,
             "item_34": 3,
-            "item_55": 2
+            "item_55": 2,
         },
-        "clan": {
-            "id": "123456",
-            "name": "Hello world clan"
-        },
-        "_customfield": "mycustom"
+        "clan": {"id": "123456", "name": "Hello world clan"},
+        "_customfield": "mycustom",
     }
 
     return player_profile_data
-

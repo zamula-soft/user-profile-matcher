@@ -1,6 +1,8 @@
 import uuid
 
-from src.external_service_list_campaigns.service_mocked_data import ExternalServiceListCampaigns
+from src.external_service_list_campaigns.service_mocked_data import (
+    ExternalServiceListCampaigns,
+)
 from src.user_profile_matcher import views, config
 from src.user_profile_matcher.domain.model import Campaign, Matcher
 from src.user_profile_matcher.service_layer import unit_of_work
@@ -19,14 +21,17 @@ def check_matchers(player_profile_data: dict, matchers: Matcher) -> bool:
                 return False
 
     if matchers.has:
-        if not("country" in matchers.has.keys() and player_profile_data.get("country") in matchers.has["country"]):
+        if not (
+            "country" in matchers.has.keys()
+            and player_profile_data.get("country") in matchers.has["country"]
+        ):
             return False
-        if not("items" in matchers.has.keys()):
+        if not ("items" in matchers.has.keys()):
             return False
         else:
             matchers_has_items_list = matchers.has["items"]
             for item in matchers_has_items_list:
-                if not(item in player_profile_data.get("inventory").keys()):
+                if not (item in player_profile_data.get("inventory").keys()):
                     return False
     logger.info("2")
     if matchers.does_not_have:
@@ -47,20 +52,18 @@ def update_player_profile_data(player_profile_data, campaign_name):
         player_profile_data["active_campaigns"] = [campaign_name]
     return player_profile_data
 
+
 def get_data_as_dict(player_profile, clan, device, inventory):
     player_profile_data = player_profile.get_dict()
 
-    player_profile_data["clan"] = {
-        "id": clan.id,
-        "name": clan.name
-    }
+    player_profile_data["clan"] = {"id": clan.id, "name": clan.name}
     player_profile_data.pop("clan_id")
 
     player_profile_data["device"] = {
         "id": device.id,
         "model": device.model,
         "carrier": device.carrier,
-        "firmware": device.firmware
+        "firmware": device.firmware,
     }
     player_profile_data.pop("device_id")
 
@@ -69,16 +72,17 @@ def get_data_as_dict(player_profile, clan, device, inventory):
         "coins": inventory.coins,
         "item_1": inventory.item_1,
         "item_34": inventory.item_34,
-        "item_55": inventory.item_55
+        "item_55": inventory.item_55,
     }
     player_profile_data.pop("inventory_id")
 
     return player_profile_data
 
-def get_client_config(player_id: uuid.UUID,  uow: unit_of_work.AbstractUnitOfWork):
+
+def get_client_config(player_id: uuid.UUID, uow: unit_of_work.AbstractUnitOfWork):
     """Get player profile data to check matchers"""
     with uow:
-        logger.debug('---------------------------------------------------')
+        logger.debug("---------------------------------------------------")
         query_result = uow.player_profile.get(player_id=player_id)
         player_profile_data = get_data_as_dict(*query_result)
 
@@ -89,8 +93,13 @@ def get_client_config(player_id: uuid.UUID,  uow: unit_of_work.AbstractUnitOfWor
             current_campaign = Campaign(**campaign_entry)
             if current_campaign.enabled:
                 matcher_obj = Matcher(**current_campaign.matchers)
-                if check_matchers(player_profile_data=player_profile_data, matchers=matcher_obj):
-                    player_profile_data = update_player_profile_data(player_profile_data=player_profile_data, campaign_name=current_campaign.name)
+                if check_matchers(
+                    player_profile_data=player_profile_data, matchers=matcher_obj
+                ):
+                    player_profile_data = update_player_profile_data(
+                        player_profile_data=player_profile_data,
+                        campaign_name=current_campaign.name,
+                    )
                     logger.debug(player_profile_data)
 
     return player_profile_data
@@ -107,8 +116,12 @@ def get_client_config_old(player_id: uuid.UUID):
         current_campaign = Campaign(**campaign_entry)
         if current_campaign.enabled:
             matcher_obj = Matcher(**current_campaign.matchers)
-            if check_matchers(player_profile_data=player_profile_data, matchers=matcher_obj):
-                player_profile_data = update_player_profile_data(player_profile_data=player_profile_data,
-                                                                 campaign_name=current_campaign.name)
+            if check_matchers(
+                player_profile_data=player_profile_data, matchers=matcher_obj
+            ):
+                player_profile_data = update_player_profile_data(
+                    player_profile_data=player_profile_data,
+                    campaign_name=current_campaign.name,
+                )
 
     return player_profile_data

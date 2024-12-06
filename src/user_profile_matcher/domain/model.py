@@ -3,6 +3,7 @@ import uuid
 from dataclasses import dataclass
 from datetime import datetime
 
+
 @dataclass
 class Device:
     id: int
@@ -27,11 +28,11 @@ class Clan:
     name: str
 
 
-
 class Gender(enum.Enum):
     MALE = "male"
     FEMALE = "female"
     NONBINARY = "nonbinary"
+
 
 @dataclass
 class PlayerProfile:
@@ -73,9 +74,9 @@ class PlayerProfile:
 
 @dataclass
 class Matcher:
-    level: dict # min 1 max 3
-    has: dict # country items
-    does_not_have: dict # items
+    level: dict  # min 1 max 3
+    has: dict  # country items
+    does_not_have: dict  # items
 
 
 @dataclass
