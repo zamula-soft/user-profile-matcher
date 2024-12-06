@@ -1,7 +1,5 @@
-# pylint: disable=attribute-defined-outside-init
 from __future__ import annotations
 import abc
-import uuid
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker

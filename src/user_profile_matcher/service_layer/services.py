@@ -2,11 +2,8 @@ import uuid
 
 from src.external_service_list_campaigns.service_mocked_data import ExternalServiceListCampaigns
 from src.user_profile_matcher import views, config
-from src.user_profile_matcher.adapters import orm
-from src.user_profile_matcher.domain import model
-from src.user_profile_matcher.domain.model import Campaign, Matcher, PlayerProfile
+from src.user_profile_matcher.domain.model import Campaign, Matcher
 from src.user_profile_matcher.service_layer import unit_of_work
-from src.user_profile_matcher.adapters.orm import PlayerProfile as PlayerProfileORM
 
 
 logger = config.get_logger("SERVICES")
