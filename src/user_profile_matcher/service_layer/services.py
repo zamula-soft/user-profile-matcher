@@ -5,7 +5,6 @@ from src.user_profile_matcher import views, config
 from src.user_profile_matcher.domain.model import Campaign, Matcher
 from src.user_profile_matcher.service_layer import unit_of_work
 
-
 logger = config.get_logger("SERVICES")
 
 
