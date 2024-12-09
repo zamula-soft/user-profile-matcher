@@ -16,10 +16,9 @@ down_and_up:
 	docker compose down --remove-orphans
 	docker compose build
 	docker compose up -d --force-recreate
-#
 
 test:
-	pytest --tb=short
+	pytest -v --tb=short
 
 black:
 	black -l 86 $$(find * -name '*.py')

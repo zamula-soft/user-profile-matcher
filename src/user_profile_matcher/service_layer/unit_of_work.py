@@ -56,3 +56,19 @@ class SqlAlchemyUnitOfWork(AbstractUnitOfWork):
 
     def rollback(self):
         self.session.rollback()
+
+
+class FakeUnitOfWork(AbstractUnitOfWork):
+    def __init__(self):
+        pass
+
+    def __enter__(self):
+        self.session = None
+        self.player_profile = repository.FakeRepository()
+        return super().__enter__()
+
+    def _commit(self):
+        pass
+
+    def rollback(self):
+        pass

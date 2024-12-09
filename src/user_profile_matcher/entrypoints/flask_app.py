@@ -11,8 +11,9 @@ def get_client_config_endpoint(player_id):
         uow: unit_of_work.AbstractUnitOfWork = unit_of_work.SqlAlchemyUnitOfWork()
         player_profile = services.get_client_config(player_id=player_id, uow=uow)
     except Exception as e:
-        return {"message": str(e)}, HTTPStatus.INTERNAL_SERVER_ERROR
+        return {"message": str(e)}, HTTPStatus.NO_CONTENT
 
     if not player_profile:
         return "not found", HTTPStatus.NOT_FOUND
+
     return jsonify(player_profile), HTTPStatus.OK

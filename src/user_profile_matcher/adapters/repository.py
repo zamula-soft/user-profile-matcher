@@ -11,7 +11,7 @@ logger = config.get_logger("REPOSITORY")
 
 
 class AbstractRepository(abc.ABC):
-    """Abstract repo for tests"""
+    """Abstract repo"""
 
     def __init__(self):
         pass
@@ -59,3 +59,7 @@ class SqlAlchemyRepository(AbstractRepository):
 
         logger.debug(result)
         return result
+
+class FakeRepository(AbstractRepository):
+    def _get(self, player_id) -> model.PlayerProfile:
+        pass
