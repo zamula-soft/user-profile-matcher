@@ -103,25 +103,3 @@ def get_client_config(player_id: uuid.UUID, uow: unit_of_work.AbstractUnitOfWork
                     logger.debug(player_profile_data)
 
     return player_profile_data
-
-
-def get_client_config_old(player_id: uuid.UUID):
-    """Get player profile data to check matchers"""
-    player_profile_data = views.get_player_profile_data(player_id=player_id)
-
-    external_service = ExternalServiceListCampaigns()
-    campaigns = external_service.get_list_campaigns_data()
-
-    for campaign_entry in campaigns:
-        current_campaign = Campaign(**campaign_entry)
-        if current_campaign.enabled:
-            matcher_obj = Matcher(**current_campaign.matchers)
-            if check_matchers(
-                player_profile_data=player_profile_data, matchers=matcher_obj
-            ):
-                player_profile_data = update_player_profile_data(
-                    player_profile_data=player_profile_data,
-                    campaign_name=current_campaign.name,
-                )
-
-    return player_profile_data
